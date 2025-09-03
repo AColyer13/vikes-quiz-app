@@ -336,7 +336,7 @@ function App() {
                 </strong>
               </div>
               <div className="answer-line">
-                <span className="badge bg-success text-dark me-2">Correct</span>
+                <span className="badge bg-success text-dark me-2">Answer</span>
                 <strong>{correctText}</strong>
               </div>
             </div>
