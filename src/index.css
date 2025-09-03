@@ -198,7 +198,7 @@ p, li {
   border: none;
   border-radius: 1.2em;
   box-shadow: var(--shadow);
-  padding: 1em 1.4em;
+  padding: 0.8em 1em;      /* reduced vertical and horizontal padding */
   font-size: 1.1rem;
   font-family: var(--font-family);
   font-weight: 600;
@@ -209,8 +209,16 @@ p, li {
   text-align: center;
   display: block;
   width: 100%;
-  max-width: 26em;
+  max-width: 20em;         /* reduced from 26em */
 }
+
+/* Make review navigation buttons a tad smaller and more narrow */
+#review-prev, #review-next {
+  font-size: 0.95rem;
+  padding: 0.6em 0.7em;    /* slightly less horizontal padding */
+  max-width: 8em;          /* reduced from 12em */
+}
+
 .vikings-btn:active, .option-btn:active, #next-button:active, #restart-button:active {
   background: var(--accent);
   color: var(--primary);
