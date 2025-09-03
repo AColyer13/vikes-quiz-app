@@ -42,6 +42,10 @@ img, video {
   --font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'San Francisco', 'Segoe UI', Arial, sans-serif;
   --transition: 0.2s cubic-bezier(.4,0,.2,1);
   --answer-label-width: 9rem; /* controls space reserved for the label badge */
+  /* Heading spacing variables (centralized and responsive) */
+  --heading-gap-h1: clamp(0.5rem, 3.5vw, 0.9rem);
+  --heading-gap-h2: clamp(0.45rem, 2.8vw, 0.7rem);
+  --heading-gap-h3: clamp(0.35rem, 2vw, 0.5rem);
 }
 
 /* === BASE TYPOGRAPHY === */
@@ -61,20 +65,20 @@ h1, .main-heading {
   font-size: clamp(1.5rem, 5vw, 2.5rem);
   font-weight: 800;
   color: var(--primary);
-  margin-bottom: 0.7em;
+  margin-block-end: var(--heading-gap-h1);
   text-align: center;
 }
 h2 {
   font-size: clamp(1.2rem, 4vw, 2rem);
   font-weight: 700;
   color: var(--primary);
-  margin-bottom: 0.5em;
+  margin-block-end: var(--heading-gap-h2);
 }
 h3 {
   font-size: clamp(1rem, 3vw, 1.5rem);
   font-weight: 600;
   color: var(--text);
-  margin-bottom: 0.4em;
+  margin-block-end: var(--heading-gap-h3);
 }
 p, li {
   font-size: clamp(1rem, 2.5vw, 1.15rem);
@@ -550,6 +554,29 @@ body.center-score {
   gap: 0.5em;
   margin: 0.6em auto 1em auto;
   max-width: 40em;
+}
+
+/* Tighten spacing in the quiz header area so title, badge and question are closer */
+#quiz-container .main-heading {
+  margin-block-end: calc(var(--heading-gap-h1) * 0.6); /* slightly tighter than the global setting */
+}
+
+#quiz-container .q-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem; /* small gap between badge and question */
+  margin-top: 0.15rem; /* pull the block slightly up under the heading */
+}
+
+.question-box-fixed {
+  padding: 0.25rem 0.5rem; /* reduce inner spacing for the question wrapper */
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+#quiz-container .badge.bg-warning {
+  padding: 0.45rem 0.8rem; /* slightly smaller badge to reduce visual gap */
 }
 
 /* Slightly tighter headings inside quiz/start panels */
