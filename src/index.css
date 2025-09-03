@@ -215,6 +215,15 @@ p, li {
   display: block;
   width: 100%;
   max-width: 20em;         /* reduced from 26em */
+  box-sizing: border-box; /* include padding in width calculation */
+  min-height: 3.25rem; /* ensure reasonable touch target on desktop -> scales on mobile */
+  line-height: 1.1; /* keep text vertically centered */
+  white-space: normal; /* allow wrapping for long option text */
+  word-break: break-word;
+  display: flex; /* center content for better visual balance */
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem; /* allow icons/text separation if needed */
 }
 
 /* Make review navigation buttons a tad smaller and more narrow */
@@ -448,12 +457,23 @@ img, video {
     font-size: clamp(1.1rem, 6vw, 1.5rem);
     padding: 0 0.2em;
   }
-  .vikings-btn, .option-btn, #next-button, #restart-button, #review-prev, #review-next {
-    font-size: clamp(0.95rem, 1rem, 1.1rem);
+  .vikings-btn, .option-btn, #next-button, #restart-button, #review-prev, #review-next, .btn {
+    font-size: clamp(1rem, 3.5vw, 1.05rem);
     max-width: 100%;
     width: 100%;
-    padding: 0.8em 0.6em;
+    padding: 0.9rem 0.75rem; /* larger hit area for tappability */
     box-sizing: border-box;
+    min-height: 3.2rem; /* meet mobile touch target recommendations (>=48px visually, but scaled here) */
+    border-radius: 0.9rem; /* slightly smaller radius to reduce visual bulk */
+    white-space: normal; /* allow multi-line labels */
+    text-wrap: balance;
+    word-break: break-word;
+  }
+
+  /* Make option buttons taller on mobile for comfortable tapping */
+  #options-container .option-btn {
+    padding-block: 0.9rem;
+    min-height: 3.6rem; /* increase vertical space specifically for options */
   }
   /* reduce reserved label space on small screens */
   :root { --answer-label-width: 5.2rem; }
