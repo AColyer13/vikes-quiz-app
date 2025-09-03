@@ -565,7 +565,7 @@ body.center-score {
 /* give the panel a small top offset when the body is in center-score mode */
 body.center-score .card-panel {
   /* remove auto vertical margins so the panel truly centers */
-  margin: 0.6rem 0 0 0; /* small top margin so the panel sits closer to the top */
+  margin: 0.15rem 0 0 0; /* reduced from 0.6rem to tighten top spacing */
   /* allow panel to size naturally but respect max-width */
   max-width: 48em;
   width: 100%;
@@ -574,9 +574,9 @@ body.center-score .card-panel {
 /* Compact score area overrides */
 #score-container {
   /* reduce panel padding and vertical spacing for a tighter score card */
-  padding: 1.0em 0.9em; /* was 2em 1.5em via .card-panel */
-  gap: 0.5em;           /* reduce internal gap */
-  margin: 0.6em auto 1em auto; /* smaller top/bottom margins */
+  padding: 0.6em 0.6em; /* reduced top/bottom and left/right padding */
+  gap: 0.4em;           /* slightly tighter internal gap */
+  margin: 0.25em auto 0.6em auto; /* smaller top margin so the card sits nearer the top */
   max-width: 40em;     /* keep reasonable width but slightly narrower */
 }
 
