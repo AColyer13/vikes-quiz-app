@@ -734,6 +734,47 @@ body, html {
   margin: 0 auto;
 }
 
+/* === IOS / Mobile overflow safety fixes ===
+   These rules are intentionally conservative and scoped so they don't
+   change desktop layout. They address cases where full-viewport units
+   or padding on containers cause children (buttons) to overflow on
+   some iOS Safari configurations.
+*/
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden; /* double-guard against horizontal scroll */
+  -webkit-text-size-adjust: 100%; /* avoid unexpected text scaling on iOS */
+}
+
+/* Ensure all core containers include padding in width calculations */
+.main-wrapper, .card-panel, .container, #quiz-container, #start-container {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+/* Prevent box shadows or transforms from forcing a wider layout */
+.card-panel {
+  overflow-x: hidden;
+}
+
+/* Stronger constraints for buttons on very small viewports (iPhone)
+   - Respect container padding using calc so visual edges never bleed.
+   - Use overflow-wrap/word-break to keep long labels from forcing width.
+*/
+.vikings-btn, .option-btn, #next-button, #restart-button, .btn {
+  max-width: calc(100% - 1rem) !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  padding-inline: 0.6rem !important;
+  overflow-wrap: anywhere !important;
+  word-break: break-word !important;
+}
+
+/* If a rule elsewhere attempts to set 100vw, ensure it falls back to 100% */
+* { max-width: 100%; }
+
+
 /* Make each answer-line a compact grid and center it */
 #summary-container .answer-line {
   display: grid;
