@@ -274,6 +274,7 @@ a:focus-visible, button:focus-visible, .option-btn:focus-visible, .vikings-btn:f
   font-size: clamp(1.6rem, 5.5vw, 2.2rem); /* slightly reduced max size */
   margin-bottom: 0.2em; /* reduced from 0.6em */
   color: var(--accent);
+  font-weight: bold; /* ensure bold font */
 }
 .review-panel {
   margin-bottom: 1em;
