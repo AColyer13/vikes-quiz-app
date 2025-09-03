@@ -1,0 +1,678 @@
+/* === CSS RESET / NORMALIZE === */
+/* Reset box-sizing and remove default margins/paddings */
+html {
+  box-sizing: border-box;
+  font-size: 100%; /* 16px default */
+  scroll-behavior: smooth;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+/* Remove default list styles, button outlines, etc. */
+ul, ol {
+  list-style: none;
+}
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  outline: none;
+}
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* === ROOT VARIABLES === */
+:root {
+  --primary: #4F2683;
+  --accent: #FFC62F;
+  --bg: #fff;
+  --text: #222;
+  --nav-bg: #fff;
+  --nav-text: #4F2683;
+  --nav-hover: #FFC62F;
+  --radius: 1.5em;
+  --shadow: 0 4px 24px -8px rgba(0,0,0,0.12);
+  --font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'San Francisco', 'Segoe UI', Arial, sans-serif;
+  --transition: 0.2s cubic-bezier(.4,0,.2,1);
+  --answer-label-width: 9rem; /* controls space reserved for the label badge */
+}
+
+/* === BASE TYPOGRAPHY === */
+body {
+  font-family: var(--font-family);
+  background: linear-gradient(135deg, var(--accent), var(--primary));
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.6;
+  font-size: 1rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Responsive typography using clamp */
+h1, .main-heading {
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 0.7em;
+  text-align: center;
+}
+h2 {
+  font-size: clamp(1.2rem, 4vw, 2rem);
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 0.5em;
+}
+h3 {
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.4em;
+}
+p, li {
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
+  color: var(--text);
+  margin-bottom: 0.6em;
+}
+
+/* === LAYOUT CONTAINERS === */
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100vw;
+  max-width: 100vw;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1.5em 1em;
+  background: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Card panels for content sections */
+.card-panel, .container, #score-container, #quiz-container, #start-container {
+  background: linear-gradient(135deg, rgba(255,255,255,0.28), rgba(255,255,255,0.18));
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  color: var(--text);
+  border: 1px solid rgba(255,255,255,0.18);
+  width: 100%;
+  max-width: 48em;
+  margin: 0 auto 2em auto;
+  padding: 2em 1.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2em;
+}
+
+/* === NAVIGATION MENU === */
+.navbar {
+  width: 100%;
+  background: var(--nav-bg);
+  color: var(--nav-text);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 48em;
+  margin: 0 auto;
+  padding: 1em;
+}
+.nav-logo {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: -0.02em;
+}
+.nav-links {
+  display: flex;
+  gap: 1.2em;
+}
+.nav-link {
+  color: var(--nav-text);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.05rem;
+  padding: 0.5em 1em;
+  border-radius: 1em;
+  transition: background var(--transition), color var(--transition);
+}
+.nav-link:hover, .nav-link:focus {
+  background: var(--nav-hover);
+  color: var(--primary);
+  outline: none;
+}
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: var(--primary);
+  cursor: pointer;
+  padding: 0.2em 0.5em;
+}
+
+/* === MOBILE NAVIGATION === */
+@media (max-width: 768px) {
+  .navbar-inner {
+    flex-direction: row;
+    padding: 0.8em 0.5em;
+  }
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--nav-bg);
+    flex-direction: column;
+    gap: 0.5em;
+    padding: 1em 0.5em;
+    display: none;
+  }
+  .nav-links.active {
+    display: flex;
+  }
+  .nav-toggle {
+    display: block;
+  }
+}
+
+/* === BUTTONS === */
+.vikings-btn, .option-btn, #next-button, #restart-button, #review-prev, #review-next, .nav-link {
+  background: rgba(255,255,255,0.28);
+  color: var(--text);
+  border: none;
+  border-radius: 1.2em;
+  box-shadow: var(--shadow);
+  padding: 1em 1.4em;
+  font-size: 1.1rem;
+  font-family: var(--font-family);
+  font-weight: 600;
+  transition: background var(--transition), box-shadow var(--transition), transform 0.1s;
+  outline: none;
+  cursor: pointer;
+  margin: 0.2em 0;
+  text-align: center;
+  display: block;
+  width: 100%;
+  max-width: 26em;
+}
+.vikings-btn:active, .option-btn:active, #next-button:active, #restart-button:active {
+  background: var(--accent);
+  color: var(--primary);
+  transform: scale(0.98);
+}
+.vikings-btn:focus, .option-btn:focus, #next-button:focus, #restart-button:focus {
+  outline: none;
+}
+
+/* Remove persistent yellow border on selected answer buttons */
+.option-btn:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Only show focus outline for accessibility (keyboard navigation) */
+.option-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* === ACCESSIBILITY: FOCUS STYLES === */
+a:focus, button:focus, .option-btn:focus, .vikings-btn:focus {
+  outline: none !important;
+}
+a:focus-visible, button:focus-visible, .option-btn:focus-visible, .vikings-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* === OPTIONS CONTAINER === */
+#options-container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.8em;
+  width: 100%;
+  max-width: 26em;
+  margin: 0 auto;
+}
+
+/* === PROGRESS BAR === */
+#quiz-progress {
+  display: block;
+  margin: 0 auto 0.4em auto; /* reduced bottom spacing (was 1em) */
+  width: 80%;
+  max-width: 20em;
+  height: 0.5em;
+  border-radius: 0.4em;
+  background: #fff;
+}
+
+/* === SCORE & REVIEW SECTIONS === */
+.score-title {
+  font-size: clamp(1.3rem, 4vw, 2.2rem);
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 0.7em;
+}
+.score-display {
+  font-size: clamp(2rem, 6vw, 2.8rem);
+  font-weight: bold;
+  margin-bottom: 1.2em;
+  color: var(--accent);
+}
+.review-panel {
+  margin-bottom: 1em;
+  padding: 1.5em 1em;
+  background: rgba(255,255,255,0.08);
+  border-radius: 1em;
+}
+.review-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.7em;
+  margin-bottom: 1em;
+  width: 100%;
+  max-width: 44em;
+}
+
+/* === SUMMARY CONTAINER === */
+#summary-container {
+  margin-top: 1em;
+  padding-top: 0.5em;
+  background: none;
+  border-radius: var(--radius);
+  box-shadow: none;
+  color: var(--text);
+  border: 2px solid #f9e9c6;
+  text-align: center;
+  width: 100%;
+  max-width: 48em;
+}
+
+/* === ACCESSIBLE BADGES === */
+.badge.bg-warning.text-dark,
+.badge.bg-danger,
+.badge.bg-success {
+  display: inline-block;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  font-weight: 600;
+  padding: 0.5em 0.8em;
+  border-radius: 1em;
+  margin-bottom: 0.2em;
+  margin-right: 0.5em;
+  color: #222;
+  background: #FFC62F;
+}
+.badge.bg-danger {
+  background: #e74c3c;
+  color: #fff;
+}
+.badge.bg-success {
+  background: #27ae60;
+  color: #fff;
+}
+
+/* === ANSWERS LAYOUT === */
+.answers {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.3em;
+  margin: 0;
+  line-height: 1.5;
+  /* left-align text inside answers so names sit next to the badges */
+  text-align: left;
+  width: 100%;
+  /* center the whole vertical stack horizontally when inside the summary */
+  align-items: center;
+}
+
+/* Reduce gap between label and answer text */
+.answer-line {
+  display: grid;
+  /* fixed label column so both rows align; adjust --answer-label-width to change spacing */
+  grid-template-columns: var(--answer-label-width) minmax(0, 1fr);
+  align-items: center;
+  gap: 0.5rem;
+  /* allow the row to shrink below container width so the parent can center it */
+  width: auto;
+  max-width: var(--answer-row-width, 36rem);
+}
+/* badge aligns to the right edge of its column; answer text starts at the left of the text column */
+.answer-line > .badge,
+.answer-line > span {
+  justify-self: end;
+  align-self: center;
+}
+.answer-line > strong {
+  justify-self: start;
+  display: flex;
+  align-items: center;
+  /* small left margin to avoid touching badge directly on very small screens */
+  margin-left: 0.25rem;
+}
+
+/* Center stack only inside the summary container so other .answers remain full-width */
+#summary-container .answers {
+  align-items: center;
+}
+#summary-container .answer-line {
+  width: auto;
+  max-width: var(--answer-row-width, 36rem);
+}
+
+/* === IMAGES & VIDEOS === */
+img, video {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.7em;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+/* === UTILITY CLASSES === */
+.d-none {
+  display: none !important;
+}
+.text-center {
+  text-align: center !important;
+}
+.text-primary {
+  color: var(--primary) !important;
+}
+.text-accent {
+  color: var(--accent) !important;
+}
+.mt-1 { margin-top: 1em !important; }
+.mb-1 { margin-bottom: 1em !important; }
+.p-1 { padding: 1em !important; }
+
+/* === MEDIA QUERIES FOR RESPONSIVENESS === */
+
+/* Small devices (max-width: 480px) */
+@media (max-width: 480px) {
+  html { font-size: 95%; }
+  .main-wrapper, .card-panel, .container, #score-container, #quiz-container, #start-container {
+    max-width: 100vw;
+    padding: 0.7em 0.2em;
+    gap: 0.7em;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+  }
+  #options-container, #summary-container, .review-panel, .review-nav {
+    max-width: 100vw;
+    padding: 0.2em;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+  }
+  h1, .main-heading, .score-title {
+    font-size: clamp(1.1rem, 6vw, 1.5rem);
+    padding: 0 0.2em;
+  }
+  .vikings-btn, .option-btn, #next-button, #restart-button, #review-prev, #review-next {
+    font-size: clamp(0.95rem, 1rem, 1.1rem);
+    max-width: 100vw;
+    width: 100vw;
+    padding: 0.8em 0.5em;
+  }
+  /* reduce reserved label space on small screens */
+  :root { --answer-label-width: 5.2rem; }
+}
+
+/* Tablets (max-width: 768px) */
+@media (max-width: 768px) {
+  html { font-size: 97%; }
+  .main-wrapper, .card-panel, .container, #score-container, #quiz-container, #start-container {
+    max-width: 100vw;
+    padding: 1em 0.5em;
+    gap: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+  }
+  #options-container, #summary-container, .review-panel, .review-nav {
+    max-width: 100vw;
+    padding: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+  }
+  /* slightly smaller label area on tablets */
+  :root { --answer-label-width: 6.4rem; }
+}
+
+/* Medium screens (max-width: 1024px) */
+@media (max-width: 1024px) {
+  html { font-size: 99%; }
+  .main-wrapper, .card-panel, .container, #score-container, #quiz-container, #start-container {
+    max-width: 100vw;
+    padding: 1.2em 1em;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+  }
+}
+
+/* Large screens (max-width: 1440px) */
+@media (max-width: 1440px) {
+  .main-wrapper, .card-panel, .container, #score-container, #quiz-container, #start-container {
+    max-width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+  }
+}
+
+/* Center the score panel in the viewport when JS toggles the class 'center-score' */
+body.center-score {
+  /* ensure full-height and use flex centering without modifying app logic */
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start; /* changed from center -> align card toward top of viewport */
+  justify-content: center; /* keep horizontal centering */
+  padding: 0.5rem; /* small padding so very small viewports keep breathing room */
+}
+/* give the panel a small top offset when the body is in center-score mode */
+body.center-score .card-panel {
+  /* remove auto vertical margins so the panel truly centers */
+  margin: 0.6rem 0 0 0; /* small top margin so the panel sits closer to the top */
+  /* allow panel to size naturally but respect max-width */
+  max-width: 48em;
+  width: 100%;
+}
+
+/* Compact score area overrides */
+#score-container {
+  /* reduce panel padding and vertical spacing for a tighter score card */
+  padding: 1.0em 0.9em; /* was 2em 1.5em via .card-panel */
+  gap: 0.5em;           /* reduce internal gap */
+  margin: 0.6em auto 1em auto; /* smaller top/bottom margins */
+  max-width: 40em;     /* keep reasonable width but slightly narrower */
+}
+
+/* Make title and numeric score tighter */
+.score-title {
+  margin-bottom: 0.35em; /* was 0.7em */
+  font-size: clamp(1.1rem, 3.5vw, 1.8rem); /* slightly smaller on large screens */
+}
+
+.score-display {
+  font-size: clamp(1.6rem, 5.5vw, 2.2rem); /* slightly reduced max size */
+  margin-bottom: 0.6em; /* was 1.2em */
+}
+
+/* When centered, reduce the extra breathing room so the panel appears more compact */
+body.center-score {
+  padding: 0.5rem; /* was 1rem */
+}
+
+/* Compact quiz & start container overrides (match #score-container) */
+#quiz-container,
+#start-container {
+  /* reduce panel padding and vertical spacing for a tighter card */
+  padding: 1.0em 0.9em; /* match score-container */
+  gap: 0.5em;
+  margin: 0.6em auto 1em auto;
+  max-width: 40em;
+}
+
+/* Slightly tighter headings inside quiz/start panels */
+#quiz-container h2,
+#start-container h2,
+#quiz-container .main-heading,
+#start-container .main-heading {
+  margin-bottom: 0.4em;
+  font-size: clamp(1.1rem, 3.8vw, 1.9rem);
+}
+
+/* Tighter options layout so answer buttons sit closer together */
+#options-container {
+  gap: 0.5em;       /* was 0.8em */
+  max-width: 24.5em; /* slightly narrower than general card buttons */
+  padding: 0;       /* allow card padding to control spacing */
+}
+
+/* Ensure mobile rules still respect the compactness (override where media queries may expand) */
+@media (max-width: 480px) {
+  #quiz-container, #start-container {
+    padding: 0.7em 0.3em;
+    gap: 0.45em;
+    margin: 0.5em auto 0.8em auto;
+    max-width: 100vw;
+  }
+  #options-container {
+    gap: 0.45em;
+    max-width: 100vw;
+    padding: 0.2em;
+  }
+}
+
+/* Next button: slightly more bottom spacing so it visually matches option spacing */
+#next-button {
+  margin-bottom: 0.6em; /* small increase from the default 0.2em */
+}
+
+/* When not centering the score card, nudge quiz and start cards up closer to top */
+body:not(.center-score) #quiz-container,
+body:not(.center-score) #start-container {
+  margin-top: 0.25rem; /* shrink top gap so the card sits nearer the top */
+  /* keep other layout rules from existing #quiz-container/#start-container */
+}
+
+/* === Prevent horizontal scrolling === */
+body, html {
+  overflow-x: hidden;
+}
+
+/* === Merged from App.css (unique rules) === */
+
+/* App root layout tweaks used by the project */
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  padding-top: 0.6rem; /* Reduce top padding of the app root when not centering the score card. */
+  text-align: center;
+}
+
+/* simple logo rules (kept from App.css) */
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+/* Misc helpers from App.css */
+.card {
+  padding: 2em;
+}
+.read-the-docs {
+  color: #888;
+}
+
+/* More-specific summary-container centering rules from App.css
+   These intentionally follow the earlier definitions to ensure the same final rendering.
+*/
+#summary-container .answers {
+  /* let the vertical stack be sized to its content and centered */
+  width: auto !important;
+  max-width: none !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+
+/* Make each answer-line a compact grid and center it */
+#summary-container .answer-line {
+  display: grid;
+  grid-template-columns: var(--answer-label-width, 9rem) auto;
+  gap: 0.75rem;
+  align-items: center;
+  /* shrink to content so the stack can be centered */
+  width: fit-content;
+  margin: 0.25rem auto;
+}
+
+/* Right-align the badge/label and give value a consistent left spacing */
+#summary-container .answer-line > .badge,
+#summary-container .answer-line > span {
+  justify-self: end;
+  text-align: right;
+}
+#summary-container .answer-line > strong {
+  justify-self: start;
+  margin-left: 0.5rem; /* consistent separation after the label */
+}
+
+/* Small-screen fallback so the centered block never overflows */
+@media (max-width: 480px) {
+  #summary-container .answer-line {
+    grid-template-columns: min(6rem, var(--answer-label-width, 6rem)) 1fr;
+    max-width: calc(100% - 2rem);
+    width: 100%;
+    justify-items: start;
+  }
+  #summary-container .answers {
+    align-items: stretch;
+  }
+}
+
+/* === END OF FILE === */
