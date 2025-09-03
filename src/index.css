@@ -99,7 +99,7 @@ p, li {
 
 /* Card panels for content sections */
 .card-panel, .container, #score-container, #quiz-container, #start-container {
-  background: linear-gradient(135deg, rgba(255,255,255,0.28), rgba(255,255,255,0.18));
+  background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.08)); /* reduced opacity */
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   color: var(--text);
@@ -193,7 +193,7 @@ p, li {
 
 /* === BUTTONS === */
 .vikings-btn, .option-btn, #next-button, #restart-button, #review-prev, #review-next, .nav-link {
-  background: rgba(255,255,255,0.28);
+  background: rgba(255,255,255,0.12); /* reduced opacity */
   color: var(--text);
   border: none;
   border-radius: 1.2em;
@@ -279,7 +279,7 @@ a:focus-visible, button:focus-visible, .option-btn:focus-visible, .vikings-btn:f
 .review-panel {
   margin-bottom: 1em;
   padding: 1.5em 1em;
-  background: rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.04); /* reduced opacity */
   border-radius: 1em;
 }
 .review-nav {
@@ -298,7 +298,7 @@ a:focus-visible, button:focus-visible, .option-btn:focus-visible, .vikings-btn:f
   margin-top: 1em;
   padding-top: 0.5em;
   /* very subtle glass-like effect */
-  background: linear-gradient(135deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04));
+  background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); /* reduced opacity */
   border-radius: var(--radius);
   box-shadow: 0 1px 6px -3px rgba(0,0,0,0.04);
   color: var(--text);
