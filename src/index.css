@@ -398,6 +398,36 @@ a:focus-visible, button:focus-visible, .option-btn:focus-visible, .vikings-btn:f
 }
 
 /* Center stack only inside the summary container so other .answers remain full-width */
+
+/* === MOBILE OVERRIDES: force buttons to be responsive and tappable === */
+@media (max-width: 480px) {
+  /* High-specificity selectors scoped to quiz container */
+  #quiz-container .card-panel .vikings-btn,
+  #quiz-container .card-panel .option-btn,
+  #quiz-container .card-panel #next-button,
+  #quiz-container .card-panel #restart-button,
+  #quiz-container .card-panel .btn {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    min-height: 44px !important; /* 44px recommended touch target */
+    padding: 0.6em 0.8em !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* Also cover option buttons returned inside options container */
+  #options-container .btn,
+  #options-container .option-btn,
+  #options-container .vikings-btn {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
 #summary-container .answers {
   align-items: center;
 }
