@@ -296,10 +296,13 @@ a:focus-visible, button:focus-visible, .option-btn:focus-visible, .vikings-btn:f
   margin-bottom: 0.7em;
 }
 .score-display {
-  font-size: clamp(1.6rem, 5.5vw, 2.2rem); /* slightly reduced max size */
-  margin-bottom: 0.2em; /* reduced from 0.6em */
+  /* Much larger numeric score; still responsive */
+  font-size: clamp(3.6rem, 14vw, 8.5rem); /* bumped min, preferred and max */
+  margin: 0 0 0.25rem 0; /* keep top tight and small bottom gap */
   color: var(--accent);
-  font-weight: bold; /* ensure bold font */
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: 0;
 }
 .review-panel {
   margin-bottom: 1em;
