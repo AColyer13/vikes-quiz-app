@@ -271,9 +271,8 @@ a:focus-visible, button:focus-visible, .option-btn:focus-visible, .vikings-btn:f
   margin-bottom: 0.7em;
 }
 .score-display {
-  font-size: clamp(2rem, 6vw, 2.8rem);
-  font-weight: bold;
-  margin-bottom: 1.2em;
+  font-size: clamp(1.6rem, 5.5vw, 2.2rem); /* slightly reduced max size */
+  margin-bottom: 0.2em; /* reduced from 0.6em */
   color: var(--accent);
 }
 .review-panel {
@@ -297,14 +296,16 @@ a:focus-visible, button:focus-visible, .option-btn:focus-visible, .vikings-btn:f
 #summary-container {
   margin-top: 1em;
   padding-top: 0.5em;
-  background: none;
+  /* very subtle glass-like effect */
+  background: linear-gradient(135deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04));
   border-radius: var(--radius);
-  box-shadow: none;
+  box-shadow: 0 1px 6px -3px rgba(0,0,0,0.04);
   color: var(--text);
-  border: 2px solid #f9e9c6;
   text-align: center;
   width: 100%;
   max-width: 48em;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
 }
 
 /* === ACCESSIBLE BADGES === */
@@ -517,7 +518,7 @@ body.center-score .card-panel {
 
 .score-display {
   font-size: clamp(1.6rem, 5.5vw, 2.2rem); /* slightly reduced max size */
-  margin-bottom: 0.6em; /* was 1.2em */
+  margin-bottom: 0.2em; /* reduced from 0.6em */
 }
 
 /* When centered, reduce the extra breathing room so the panel appears more compact */
