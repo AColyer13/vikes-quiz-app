@@ -33,6 +33,39 @@ Key files:
 - `index.html`: App mount point and Vite entry.
 - `docs/`: Built site used for GitHub Pages (branch: `main`, folder: `/docs`).
 
+## App.jsx Overview
+
+- **Component Role:** Single-page quiz controller and UI renderer. Manages quiz lifecycle across three sections: `start`, `quiz`, and `score`.
+- **State:**
+	- `items`: Shuffled questions with shuffled options, correct index `a`, and user `pick`.
+	- `currentQuestionIdx`: Zero-based index of the active quiz question.
+	- `score`: Count of correct answers.
+	- `reviewIdx`: Index used in the score view for answer-by-answer review.
+	- `currentSection`: `'start' | 'quiz' | 'score'` to switch UI panels.
+- **Key Functions:**
+	- `startQuiz()`: Shuffles questions/options (Fisher–Yates), resets state, enters `quiz`.
+	- `chooseOption(i)`: Records user selection, increments `score` when correct, gives haptic feedback via `navigator.vibrate`, and removes focus to avoid outline.
+	- `goToNextQuestion()`: Advances index or transitions to `score` section when finished.
+	- `restartQuiz()`: Resets to the start screen.
+- **Utilities:**
+	- `shuffleArray(arr)`: Fisher–Yates shuffle with defensive copy.
+	- `sanitizeText(text)`: Ensures strings (React already escapes by default).
+- **Effects (UX Enhancements):**
+	- Day/Night theme based on time; updates on visibility changes.
+	- Prevents iOS pinch-zoom gestures for steadier mobile UX.
+	- Scroll-lock and centering rules based on device coarse pointer, orientation, viewport, and current section (keeps panels stable on mobile, auto-centers score view).
+	- Keyboard navigation: Enter to start/advance/restart; Arrow keys to navigate review cards.
+- **Rendering Flow:**
+	- `start`: Title and Start button.
+	- `quiz`: Shows heading, question text, progress bar, and option buttons with dynamic success/error styling once answered; reveals Next button post-pick.
+	- `score`: Displays final score, review panel with each question, user response vs correct answer, Prev/Next review navigation, and Restart button.
+	- Buttons include ARIA labels; focus is managed to reduce accidental outlines on mobile.
+	- Progress bar value computed as answered/total.
+- **Styling Hooks:**
+	- Uses classes like `vikings-btn`, `option-btn`, `card-panel`, `score-title`, `score-display` that are defined in `src/index.css`/`src/App.css`.
+	- Mobile/iOS safeguards in CSS keep option buttons inside the viewport and prevent horizontal overflow.
+
+
 ## Getting Started
 
 Prerequisites:
